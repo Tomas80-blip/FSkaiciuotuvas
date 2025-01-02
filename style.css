@@ -1,1 +1,86 @@
-/*# sourceMappingURL=style.css.map */
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f4f4;
+}
+
+.calculator {
+  background-color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+#display {
+  font-size: 2em;
+  text-align: right;
+  color: white;
+  padding: 10px;
+  background-color: black;
+  margin-bottom: 20px;
+  height: 100px;
+  line-height: 100px;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.btn {
+  font-size: 1.5em;
+  padding: 20px;
+  background-color: #e0e0e0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #d1d1d1;
+}
+
+.operator {
+  background-color: #f4b400;
+  color: white;
+}
+
+.operator:hover {
+  background-color: #f39c12;
+}
+
+#clear {
+  background-color: #f44336;
+  color: white;
+  grid-column: 1/3;
+}
+
+#clear:hover {
+  background-color: #e53935;
+}
+
+#delete {
+  background-color: #8e24aa;
+  color: white;
+}
+
+#delete:hover {
+  background-color: #7b1fa2;
+}
+
+#dot {
+  background-color: #4caf50;
+  color: white;
+}
+
+#dot:hover {
+  background-color: #388e3c;
+}
+
+#equals {
+  grid-column: 3/5;
+}/*# sourceMappingURL=style.css.map */

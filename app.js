@@ -5,8 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentInput = "";
     let previousInput = "";
     let operator = null;
-
-
+  
+    function updateDisplay(value) {
+        display.textContent = value;
+    }
+  
     buttons.forEach(button => {
         button.addEventListener("click", () => {
             const buttonText = button.textContent;
@@ -54,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
-
+  
     function calculate(num1, num2, operator) {
         switch (operator) {
             case "+":
@@ -69,4 +72,5 @@ document.addEventListener("DOMContentLoaded", () => {
                 return 0;
         }
     }
-});
+  });
+  
