@@ -1,3 +1,11 @@
+//Jūsų tikslas – sukurti pilnai funkcionuojantį skaičiuotuvą su 4 funkcijom: sudėt, atimt, dalint, daugint,
+//  na ir aišku dėti tašką, ištrinti ir anuliuoti.
+//  NEGALIMA NAUDOTI:
+//  o innerHTML
+//  o JS HTML failo viduje 
+// o eval() ar bet ko kas dirba su string duomenų tipu
+//  apskaičiavime.
+
 document.addEventListener("DOMContentLoaded", () => {
     const display = document.getElementById("display");
     const buttons = document.querySelectorAll(".btn");
