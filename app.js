@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function updateDisplay(value) {
         display.textContent = value;
     }
-  
+  // The forEach loop iterates over all buttons, attaching a click event listener to each one. When a button is clicked
     buttons.forEach(button => {
         button.addEventListener("click", () => {
             const buttonText = button.textContent;
@@ -27,12 +27,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     updateDisplay(operator);
                 }
             } else if (button.id === "equals") {
+                //calls a calculate function (presumably defined elsewhere) that takes the two numeric inputs and the operator to compute the result.
                 if (previousInput && currentInput && operator) {
                     const result = calculate(Number(previousInput), Number(currentInput), operator);
-                    updateDisplay(result);
-                    previousInput = "";
-                    currentInput = result.toString();
-                    operator = null;
+                    updateDisplay(result); //updates the calculator display with the result of the calculation.
+                    previousInput = "";  //previousInput is reset to an empty string.
+                    currentInput = result.toString(); //updated to the calculated result (converted to a string).
+                    operator = null;//operator is reset to null to signify no pending operation.
                 }
             } else if (button.id === "clear") {
                 // Clear all inputs and reset display
