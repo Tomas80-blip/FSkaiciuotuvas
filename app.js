@@ -10,24 +10,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const display = document.getElementById("display");
     const buttons = document.querySelectorAll(".btn");
   
-    let currentInput = "";
-    let previousInput = "";
-    let operator = null;
+    let currentInput = "";//dabartine ivestis
+    let previousInput = "";//buvusi ivestis
+    let operator = null;//matematinis operatorius(+-*/)
   
     function updateDisplay(value) {
         display.textContent = value;
     }
-  // The forEach loop iterates over all buttons, attaching a click event listener to each one. When a button is clicked
+  //ForEach loopas kartojamas per visus mygtukus priskiriant paspaudimo ivyki kiekvienam, kai paspaudziamas mygtukas
     buttons.forEach(button => {
         button.addEventListener("click", () => {
             const buttonText = button.textContent;
   
             if (button.classList.contains("number")) {
-                // Append number to the current input
+                //Priskiria skaiciu dabartiniai ivesciai
                 currentInput += buttonText;
                 updateDisplay(currentInput);
             } else if (button.classList.contains("operator")) {
-                // Store the current input and operator
+                // issaugo dabartine ivesti ir operacija
                 if (currentInput) {
                     previousInput = currentInput;
                     currentInput = "";
@@ -35,22 +35,22 @@ document.addEventListener("DOMContentLoaded", () => {
                     updateDisplay(operator);
                 }
             } else if (button.id === "equals") {
-                //calls a calculate function (presumably defined elsewhere) that takes the two numeric inputs and the operator to compute the result.
+                //iskviecia calculate funkcija su trimis parametrais (Number, Number, operator)
                 if (previousInput && currentInput && operator) {
                     const result = calculate(Number(previousInput), Number(currentInput), operator);
-                    updateDisplay(result); //updates the calculator display with the result of the calculation.
-                    previousInput = "";  //previousInput is reset to an empty string.
-                    currentInput = result.toString(); //updated to the calculated result (converted to a string).
-                    operator = null;//operator is reset to null to signify no pending operation.
+                    updateDisplay(result); //atvaizduoja ekrane apskaiciuota rezultata
+                    previousInput = "";  //buvusi ivestis priskiriama tusciam stringui
+                    currentInput = result.toString(); //dabartinei ivesciai priskiriamas rezultata pavercia i stringa
+                    operator = null;//operator priskiriamas null, nes nėra laukiančios operacijos (operatorius iš naujo nustatomas kaip tuščias)
                 }
-            } else if (button.id === "clear") {
-                // Clear all inputs and reset display
+            } else if (button.id === "clear") {                
+                //isvalyti visas ivestis (su opratorium) ir sk. ekrane atvaizduoti "0"
                 currentInput = "";
                 previousInput = "";
                 operator = null;
                 updateDisplay("0");
             } else if (button.id === "delete") {
-                // Remove last character from current input
+                // Istrina paskutini skaiciu ekrane
                 currentInput = currentInput.slice(0, -1);
                 if (currentInput === "") {
                     updateDisplay("0");
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     updateDisplay(currentInput);
                 }
             } else if (button.id === "dot") {
-                // Add dot to the current input
+                // Prideda taska dabartiniai ivesciai
                 if (!currentInput.includes(".")) {
                     currentInput += ".";
                     updateDisplay(currentInput);
@@ -73,9 +73,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 return num1 + num2;
             case "-":
                 return num1 - num2;
-            case "\u00d7": // multiplication
+            case "\u00d7": // daugyba
                 return num1 * num2;
-            case "\u00f7": // division
+            case "\u00f7": // dalyba
                 return num2 !== 0 ? num1 / num2 : "Error";
             default:
                 return 0;
