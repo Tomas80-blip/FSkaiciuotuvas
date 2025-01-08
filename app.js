@@ -21,11 +21,12 @@ document.addEventListener("DOMContentLoaded", () => {
     buttons.forEach(button => {
         button.addEventListener("click", () => {
             const buttonText = button.textContent;
-  
+                //jei paspaustas mygtukas turi klase "number"
             if (button.classList.contains("number")) {
-                //Priskiria skaiciu dabartiniai ivesciai
+                //Priskiria dabartiniai ivesciai skaiciu
                 currentInput += buttonText;
                 updateDisplay(currentInput);
+                    //jei paspaustas mygtukas turi klase "operator"
             } else if (button.classList.contains("operator")) {
                 // issaugo dabartine ivesti ir operacija
                 if (currentInput) {
@@ -44,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     operator = null;//operator priskiriamas null, nes nėra laukiančios operacijos (operatorius iš naujo nustatomas kaip tuščias)
                 }
             } else if (button.id === "clear") {                
-                //isvalyti visas ivestis (su opratorium) ir sk. ekrane atvaizduoti "0"
+                //isvalyti visas ivestis (su opratorium) ir sk., o ekrane atvaizduoti "0"
                 currentInput = "";
                 previousInput = "";
                 operator = null;
