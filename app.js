@@ -10,56 +10,48 @@ document.addEventListener("DOMContentLoaded", () => {
     const display = document.getElementById("display");
     const buttons = document.querySelectorAll(".btn");
   
-    let currentInput = "";//dabartine ivestis
-    let previousInput = "";//buvusi ivestis
-    let operator = null;//matematinis operatorius(+-*/)
+    let currentInput = "";
+    let previousInput = "";
+    let operator = null;
   
     function updateDisplay(value) {
         display.textContent = value;
     }
-  //ForEach loopas kartojamas per visus mygtukus priskiriant paspaudimo ivyki kiekvienam, kai paspaudziamas mygtukas
+
     buttons.forEach(button => {
         button.addEventListener("click", () => {
-            const buttonText = button.textContent;
-                //jei paspaustas mygtukas turi klase "number"
-            if (button.classList.contains("number")) {
-                //Priskiria dabartiniai ivesciai skaiciu
+            const buttonText = button.textContent;                
+            if (button.classList.contains("number")) {                
                 currentInput += buttonText;
-                updateDisplay(currentInput);
-                    //jei paspaustas mygtukas turi klase "operator"
-            } else if (button.classList.contains("operator")) {
-                // issaugo dabartine ivesti ir operacija
+                updateDisplay(currentInput);                    
+            } else if (button.classList.contains("operator")) {                
                 if (currentInput) {
                     previousInput = currentInput;
                     currentInput = "";
                     operator = buttonText;
                     updateDisplay(operator);
                 }
-            } else if (button.id === "equals") {
-                //iskviecia calculate funkcija su trimis parametrais (Number, Number, operator)
+            } else if (button.id === "equals") {                
                 if (previousInput && currentInput && operator) {
                     const result = calculate(Number(previousInput), Number(currentInput), operator);
-                    updateDisplay(result); //atvaizduoja ekrane apskaiciuota rezultata
-                    previousInput = "";  //buvusi ivestis priskiriama tusciam stringui
-                    currentInput = result.toString(); //dabartinei ivesciai priskiriamas rezultata pavercia i stringa
-                    operator = null;//operator priskiriamas null, nes nėra laukiančios operacijos (operatorius iš naujo nustatomas kaip tuščias)
+                    updateDisplay(result);
+                    previousInput = "";
+                    currentInput = result.toString();
+                    operator = null;
                 }
-            } else if (button.id === "clear") {                
-                //isvalyti visas ivestis (su opratorium) ir sk., o ekrane atvaizduoti "0"
+            } else if (button.id === "clear") {           
                 currentInput = "";
                 previousInput = "";
                 operator = null;
                 updateDisplay("0");
-            } else if (button.id === "delete") {
-                // Istrina paskutini skaiciu ekrane
+            } else if (button.id === "delete") {                
                 currentInput = currentInput.slice(0, -1);
                 if (currentInput === "") {
                     updateDisplay("0");
                 } else {
                     updateDisplay(currentInput);
                 }
-            } else if (button.id === "dot") {
-                // Prideda taska dabartiniai ivesciai
+            } else if (button.id === "dot") {                
                 if (!currentInput.includes(".")) {
                     currentInput += ".";
                     updateDisplay(currentInput);
@@ -74,9 +66,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 return num1 + num2;
             case "-":
                 return num1 - num2;
-            case "\u00d7": // daugyba
+            case "\u00d7":
                 return num1 * num2;
-            case "\u00f7": // dalyba
+            case "\u00f7":
                 return num2 !== 0 ? num1 / num2 : "Error";
             default:
                 return 0;
